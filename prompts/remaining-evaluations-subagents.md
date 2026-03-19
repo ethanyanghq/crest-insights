@@ -4,20 +4,21 @@ You are working in the `crest-insights` repo. Complete the remaining case study 
 
 ## Goal
 
-Create evaluation files in `evaluations/` for every case study in `markdown/` that does not already have a matching filename in `evaluations/`.
+Create evaluation files in `evaluations/` for every case study in `markdown/` that does not already appear in the existing evaluation corpus via its `**Source**:` metadata.
 
 Each new evaluation must:
 
 - Use the exact structure, headings, and tone used by the existing evaluation files in `evaluations/`
 - Follow the YC evaluation framework in `prompts/office-hours-distilled.md`
 - Be written as a standalone markdown file
-- Use the same filename as the source case study
+- Use a concise wedge-based filename in the form `<domain>-<wedge>.md`
+- Preserve the original case study filename in the `**Source**:` field
 - Set `**Date Evaluated**: 2026-03-19`
 
 ## Required Workflow
 
 1. Read `prompts/office-hours-distilled.md` in full and treat it as the evaluation rubric.
-2. Identify the unreviewed case studies by comparing `markdown/` and `evaluations/` filenames.
+2. Identify the unreviewed case studies by comparing `markdown/` filenames against the set of `**Source**:` values already present in `evaluations/` and `shortlist/`.
 3. Spawn multiple subagents to do the case-study analysis work in parallel.
 4. Subagents must use `reasoning_effort: "high"`.
 5. Give each subagent a disjoint file ownership set so they do not touch the same files.
@@ -30,7 +31,7 @@ Each new evaluation must:
    - scoring calibration
    - category labels
    - em dash / double hyphen usage
-9. Verify that every unreviewed source file now has a corresponding file in `evaluations/`.
+9. Verify that every unreviewed source file now has a corresponding `**Source**:` entry in `evaluations/`.
 10. Verify that each new file includes:
     - title
     - source filename
@@ -53,6 +54,7 @@ Use subagents for the heavy analysis drafting. A good pattern is:
   - read its assigned source files in `markdown/`
   - inspect 1-2 existing evaluations in `evaluations/` for style calibration
   - write the new evaluation files directly into `evaluations/`
+  - give each file a concise wedge-based title and filename rather than reusing the source headline
   - keep scores honest; most files should likely land in the `3-5` range unless there is unusually strong evidence
 
 ## Output Quality Bar
@@ -66,7 +68,7 @@ Use subagents for the heavy analysis drafting. A good pattern is:
 
 ## Useful Checks
 
-- Compare file counts between `markdown/` and `evaluations/`
+- Compare `markdown/` case study filenames against the unique `**Source**:` values present in `evaluations/` and `shortlist/`
 - Spot-check that every new file starts with `# Evaluation:`
 - Spot-check that every new file contains:
   - `## The Idea (In One Paragraph)`
@@ -83,4 +85,3 @@ When finished:
 - all previously unreviewed case studies should have evaluations in `evaluations/`
 - formatting should match the existing evaluation corpus closely
 - the final response should summarize which files were added and confirm verification
-

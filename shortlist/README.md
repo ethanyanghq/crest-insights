@@ -4,20 +4,20 @@ Top 10 most promising startup/product/problem spaces from the evaluation set, se
 
 Cutoff used: all evaluations scoring `4/10` or `5/10`.
 
-## Ranked Files
+## Ranked Evaluations
 
 ### 5/10
 
-- `ai-ready-data-labeling-for-advanced-threat-detection.md`
-- `multi-agentic-ai-solution-for-enhanced-security-operations.md`
-- `vertica-as-a-service.md`
-- `xdr-cloud-operations-solution.md`
+- `sec-security-data-labeling.md`
+- `sec-soc-agent-swarm.md`
+- `data-vertica-control-plane.md`
+- `cloud-customer-cloud-control-plane.md`
 
 ### 4/10
 
-- `accelerating-autonomous-driving-research.md`
-- `enterprise-devsecops-with-ai-multi-tenant-aws.md`
-- `sumo-logic-cloud-connectors.md`
-- `threat-detection-by-resolving-log-parsing.md`
-- `transforming-operations-with-ai-ml-enhanced-cmdb.md`
-- `trustar-trustash-integrations.md`
+- `ai-autonomous-driving-rd-platform.md`
+- `dev-ai-vulnerability-remediator.md`
+- `sec-saas-telemetry-connectors.md`
+- `sec-log-normalization-layer.md`
+- `aiops-cmdb-intelligence-layer.md`
+- `sec-threat-intel-integration-factory.md`

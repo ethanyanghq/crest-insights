@@ -153,10 +153,12 @@ If someone wanted to turn this into a real startup, what's the one concrete thin
 
 ## Output Format
 
+Use a concise, product-style evaluation name derived from the startup wedge, not the original case study's marketing headline. The markdown filename should follow `<domain>-<wedge>.md`, while the `**Source**:` field must preserve the original source filename.
+
 Write the evaluation as a structured markdown file with these sections:
 
 ```
-# Evaluation: {Case Study Title}
+# Evaluation: {Concise Product Name}
 
 **Source**: {filename}
 **Category**: {Security / AI-ML / CloudOps / Analytics / Observability / AIOps / ITSM / DevOps}
