@@ -4,6 +4,7 @@
 # Editor settings
 .idea/
 .vscode/
+.obsidian/
 
 # Python caches and bytecode
 __pycache__/
