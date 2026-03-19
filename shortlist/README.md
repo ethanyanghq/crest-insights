@@ -1,10 +1,12 @@
 # Shortlist
 
-Top 10 most promising startup/product/problem spaces from the evaluation set, selected by highest `Startup Viability Score`.
+Most promising startup/product/problem spaces from the evaluation set.
 
-Cutoff used: all evaluations scoring `4/10` or `5/10`.
+This list includes:
+- the original score-based shortlist (all evaluations scoring `4/10` or `5/10`)
+- additional manual additions based on especially compelling "Crazy Upside Scenario" potential
 
-## Ranked Evaluations
+## Original Score-Based Shortlist
 
 ### 5/10
 
@@ -21,3 +23,11 @@ Cutoff used: all evaluations scoring `4/10` or `5/10`.
 - `sec-log-normalization-layer.md`
 - `aiops-cmdb-intelligence-layer.md`
 - `sec-threat-intel-integration-factory.md`
+
+## Added For Crazy Upside Scenario
+
+- `sec-security-data-lake.md`
+- `sec-security-log-parser.md`
+- `ai-sre-knowledge-copilot.md`
+- `aiops-alert-noise-reduction.md`
+- `cloud-azure-policy-control-plane.md`
