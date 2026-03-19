@@ -1,0 +1,642 @@
+[
+  {
+    "id": "cloud-customer-cloud-control-plane",
+    "label": "Customer Cloud Control Plane",
+    "domain": "cloud",
+    "archetype": "control_plane",
+    "status": "strong_keep",
+    "current": {
+      "product_leverage": 0.73,
+      "independence": 0.70,
+      "upside": 0.83,
+      "adjacency": 0.78
+    },
+    "reframed": {
+      "product_leverage": 0.86,
+      "independence": 0.82
+    },
+    "current_form": "BYOC deployment stack for one security vendor",
+    "hidden_wedge": "tenant onboarding plus federated observability",
+    "end_state_company": "deployment operating system for secure SaaS in customer clouds",
+    "desperate_user": "platform engineering leader at a security vendor",
+    "buyer": "VP Platform or Cloud Operations",
+    "job": "launch and support customer-owned deployments without custom DevOps per tenant",
+    "workaround": "bespoke Terraform, manual cross-account setup, fragile support access",
+    "moat_type": "operational_control",
+    "reframing_direction": "custom AWS project to reusable BYOC control plane",
+    "crazy_upside": "default substrate for software that must run inside customer cloud boundaries",
+    "option_value": "high",
+    "reason_alive": "Real operational pain, good outcomes, and real leverage if generalized across vendors.",
+    "sources": {
+      "analysis": "shortlist/cloud-customer-cloud-control-plane.md"
+    }
+  },
+  {
+    "id": "data-vertica-control-plane",
+    "label": "Vertica Control Plane",
+    "domain": "data",
+    "archetype": "control_plane",
+    "status": "strong_keep",
+    "current": {
+      "product_leverage": 0.76,
+      "independence": 0.63,
+      "upside": 0.78,
+      "adjacency": 0.66
+    },
+    "reframed": {
+      "product_leverage": 0.84,
+      "independence": 0.72
+    },
+    "current_form": "managed Vertica experience inside customer AWS accounts",
+    "hidden_wedge": "BYOC warehouse control plane for regulated analytics workloads",
+    "end_state_company": "customer-cloud operating layer for heavyweight data systems",
+    "desperate_user": "data platform lead trying to offer managed Vertica without ops drag",
+    "buyer": "data platform GM or product infrastructure leader",
+    "job": "make Vertica feel managed without surrendering cloud control",
+    "workaround": "manual provisioning, hand-built monitoring, slow scaling workflows",
+    "moat_type": "operational_control",
+    "reframing_direction": "vendor-specific managed experience to broader customer-cloud data control plane",
+    "crazy_upside": "shared control layer for regulated databases that cannot live in pure SaaS",
+    "option_value": "medium",
+    "reason_alive": "The wedge is narrow but crisp, and the BYOC pattern is durable.",
+    "sources": {
+      "analysis": "shortlist/data-vertica-control-plane.md"
+    }
+  },
+  {
+    "id": "sec-security-data-labeling",
+    "label": "Security Data Labeling",
+    "domain": "security",
+    "archetype": "domain_ai",
+    "status": "strong_keep",
+    "current": {
+      "product_leverage": 0.55,
+      "independence": 0.57,
+      "upside": 0.89,
+      "adjacency": 0.67
+    },
+    "reframed": {
+      "product_leverage": 0.78,
+      "independence": 0.74
+    },
+    "current_form": "expert security annotation service",
+    "hidden_wedge": "security training-data substrate and labeling workflow",
+    "end_state_company": "canonical data layer for security model development",
+    "desperate_user": "ML lead at a security vendor starved for trustworthy labeled data",
+    "buyer": "VP ML or head of threat research",
+    "job": "turn noisy raw logs into model-ready supervision without burning analyst time",
+    "workaround": "generic label shops or expensive internal analysts doing annotation",
+    "moat_type": "proprietary_data",
+    "reframing_direction": "service labeling to reusable security data asset plus tooling",
+    "crazy_upside": "ImageNet-like ground-truth corpus for modern threat detection",
+    "option_value": "high",
+    "reason_alive": "High-upside data moat if the work becomes a recurring data asset instead of a project.",
+    "sources": {
+      "analysis": "shortlist/sec-security-data-labeling.md"
+    }
+  },
+  {
+    "id": "sec-soc-agent-swarm",
+    "label": "SOC Agent Swarm",
+    "domain": "security",
+    "archetype": "workflow_automation",
+    "status": "strong_keep",
+    "current": {
+      "product_leverage": 0.68,
+      "independence": 0.56,
+      "upside": 0.91,
+      "adjacency": 0.79
+    },
+    "reframed": {
+      "product_leverage": 0.84,
+      "independence": 0.79
+    },
+    "current_form": "multi-agent SOC investigation stack",
+    "hidden_wedge": "cross-tool investigation brief generator",
+    "end_state_company": "vendor-neutral operating layer for security investigations",
+    "desperate_user": "SOC manager with too many alerts and too few analysts",
+    "buyer": "security operations leadership",
+    "job": "compress investigation time across fragmented consoles and workflows",
+    "workaround": "manual cross-tool correlation and brittle SOAR playbooks",
+    "moat_type": "integration_sprawl",
+    "reframing_direction": "agents demo to cross-platform workflow layer",
+    "crazy_upside": "neutral orchestration brain for multi-vendor SOC environments",
+    "option_value": "high",
+    "reason_alive": "The integrations, not the agents, could become the defensible company.",
+    "sources": {
+      "analysis": "shortlist/sec-soc-agent-swarm.md"
+    }
+  },
+  {
+    "id": "ai-autonomous-driving-rd-platform",
+    "label": "Autonomous Driving R&D Platform",
+    "domain": "autonomy",
+    "archetype": "domain_ai",
+    "status": "strong_keep",
+    "current": {
+      "product_leverage": 0.58,
+      "independence": 0.54,
+      "upside": 0.93,
+      "adjacency": 0.69
+    },
+    "reframed": {
+      "product_leverage": 0.73,
+      "independence": 0.70
+    },
+    "current_form": "AV research platform bundling MLOps and annotation workflows",
+    "hidden_wedge": "specialized sensor-fusion annotation pipeline",
+    "end_state_company": "core tooling layer for vertical autonomy research teams",
+    "desperate_user": "AV ML lead bottlenecked by multi-sensor labeling and slow iteration",
+    "buyer": "head of autonomous systems R&D",
+    "job": "turn raw LiDAR, camera, and radar data into usable training loops quickly",
+    "workaround": "duct-taped MLOps stacks and generic labeling vendors",
+    "moat_type": "proprietary_data",
+    "reframing_direction": "broad R&D platform to focused annotation and data workflow wedge",
+    "crazy_upside": "default data engine for autonomy teams beyond just automotive",
+    "option_value": "high",
+    "reason_alive": "The annotation and data-pipeline wedge is sharp enough to matter.",
+    "sources": {
+      "analysis": "shortlist/ai-autonomous-driving-rd-platform.md"
+    }
+  },
+  {
+    "id": "dev-ai-vulnerability-remediator",
+    "label": "AI Vulnerability Remediator",
+    "domain": "devsecops",
+    "archetype": "workflow_automation",
+    "status": "strong_keep",
+    "current": {
+      "product_leverage": 0.66,
+      "independence": 0.52,
+      "upside": 0.88,
+      "adjacency": 0.71
+    },
+    "reframed": {
+      "product_leverage": 0.81,
+      "independence": 0.69
+    },
+    "current_form": "full vulnerability management platform with AI code fixes",
+    "hidden_wedge": "scanner-agnostic remediation PR generator",
+    "end_state_company": "fix layer between security findings and merged code changes",
+    "desperate_user": "AppSec engineer who cannot get developers to remediate findings fast enough",
+    "buyer": "head of application security",
+    "job": "turn findings into safe, reviewable fixes before release cycles stall",
+    "workaround": "manual triage, ticket spam, and developers rewriting fixes by hand",
+    "moat_type": "workflow_lockin",
+    "reframing_direction": "big platform to narrow remediation action layer",
+    "crazy_upside": "default execution engine for vulnerability remediation across the SDLC",
+    "option_value": "high",
+    "reason_alive": "The remediation step is painful, budgeted, and still under-automated.",
+    "sources": {
+      "analysis": "shortlist/dev-ai-vulnerability-remediator.md"
+    }
+  },
+  {
+    "id": "sec-saas-telemetry-connectors",
+    "label": "SaaS Telemetry Connectors",
+    "domain": "security",
+    "archetype": "integration_layer",
+    "status": "strong_keep",
+    "current": {
+      "product_leverage": 0.49,
+      "independence": 0.45,
+      "upside": 0.80,
+      "adjacency": 0.85
+    },
+    "reframed": {
+      "product_leverage": 0.73,
+      "independence": 0.66
+    },
+    "current_form": "connector catalog for SaaS security data ingestion",
+    "hidden_wedge": "cloud-native telemetry ingestion fabric for detection teams",
+    "end_state_company": "security data acquisition layer for SaaS-first environments",
+    "desperate_user": "security platform owner paged when critical SaaS logs stop flowing",
+    "buyer": "security engineering leader",
+    "job": "get identity, email, and endpoint SaaS telemetry into analysis tools reliably",
+    "workaround": "agents, cron polling, token babysitting, and manual normalization",
+    "moat_type": "integration_sprawl",
+    "reframing_direction": "connector catalog to reliability layer for telemetry onboarding",
+    "crazy_upside": "the ingestion backbone every modern SOC depends on before analytics begin",
+    "option_value": "high",
+    "reason_alive": "Connector work is commoditized in theory but still operationally ugly in practice.",
+    "sources": {
+      "analysis": "shortlist/sec-saas-telemetry-connectors.md"
+    }
+  },
+  {
+    "id": "sec-log-normalization-layer",
+    "label": "Security Log Normalization Layer",
+    "domain": "security",
+    "archetype": "data_infrastructure",
+    "status": "strong_keep",
+    "current": {
+      "product_leverage": 0.57,
+      "independence": 0.46,
+      "upside": 0.82,
+      "adjacency": 0.77
+    },
+    "reframed": {
+      "product_leverage": 0.76,
+      "independence": 0.68
+    },
+    "current_form": "parser and field-mapping work for security telemetry",
+    "hidden_wedge": "schema-trust layer that keeps detections from breaking",
+    "end_state_company": "normalization backbone for security analytics and detection engineering",
+    "desperate_user": "detection engineering lead whose rules break when new sources arrive",
+    "buyer": "VP Detection Engineering or XDR platform lead",
+    "job": "make new telemetry usable quickly without degrading detection quality",
+    "workaround": "hand-built parsers, stale mappings, and constant false-positive cleanup",
+    "moat_type": "integration_sprawl",
+    "reframing_direction": "parser services to trusted normalization layer",
+    "crazy_upside": "security equivalent of Stripe for clean, portable telemetry schemas",
+    "option_value": "high",
+    "reason_alive": "The parser itself is thin, but the trusted normalization layer could compound.",
+    "sources": {
+      "analysis": "shortlist/sec-log-normalization-layer.md"
+    }
+  },
+  {
+    "id": "aiops-cmdb-intelligence-layer",
+    "label": "CMDB Intelligence Layer",
+    "domain": "aiops",
+    "archetype": "data_infrastructure",
+    "status": "strong_keep",
+    "current": {
+      "product_leverage": 0.61,
+      "independence": 0.50,
+      "upside": 0.84,
+      "adjacency": 0.73
+    },
+    "reframed": {
+      "product_leverage": 0.77,
+      "independence": 0.64
+    },
+    "current_form": "AI enhancement layer for stale enterprise CMDBs",
+    "hidden_wedge": "dependency mapping and drift detection for one existing CMDB",
+    "end_state_company": "truth-maintenance layer for enterprise infrastructure records",
+    "desperate_user": "CMDB owner who knows the system of record is not trustworthy",
+    "buyer": "IT operations or service management leadership",
+    "job": "keep the CMDB accurate enough for incidents, audits, and change control",
+    "workaround": "manual updates, partial discovery tools, and broken dependency maps",
+    "moat_type": "operational_control",
+    "reframing_direction": "broad AI CMDB story to focused trust-repair workflow",
+    "crazy_upside": "control point for operational truth across the modern enterprise",
+    "option_value": "high",
+    "reason_alive": "Incumbent risk is real, but the trust problem is persistent and valuable.",
+    "sources": {
+      "analysis": "shortlist/aiops-cmdb-intelligence-layer.md"
+    }
+  },
+  {
+    "id": "sec-threat-intel-integration-factory",
+    "label": "Threat Intel Integration Factory",
+    "domain": "security",
+    "archetype": "integration_layer",
+    "status": "strong_keep",
+    "current": {
+      "product_leverage": 0.56,
+      "independence": 0.48,
+      "upside": 0.81,
+      "adjacency": 0.83
+    },
+    "reframed": {
+      "product_leverage": 0.74,
+      "independence": 0.67
+    },
+    "current_form": "framework for rapidly building threat-feed integrations",
+    "hidden_wedge": "source-onboarding machinery for threat intelligence platforms",
+    "end_state_company": "operating layer for ingesting and normalizing fragmented threat feeds",
+    "desperate_user": "platform lead at a threat-intel company adding sources under constant pressure",
+    "buyer": "head of platform engineering or intel operations",
+    "job": "turn new feed sources into usable normalized intel without custom engineering every time",
+    "workaround": "one-off scrapers, brittle transforms, and manual submission pipelines",
+    "moat_type": "integration_sprawl",
+    "reframing_direction": "integration throughput service to standardized source-factory product",
+    "crazy_upside": "neutral feed-ingestion layer behind multiple intelligence products",
+    "option_value": "high",
+    "reason_alive": "The pain repeats every time a new feed matters, which is exactly what you want.",
+    "sources": {
+      "analysis": "shortlist/sec-threat-intel-integration-factory.md"
+    }
+  },
+  {
+    "id": "sec-security-data-lake",
+    "label": "Security Data Lake",
+    "domain": "security",
+    "archetype": "data_infrastructure",
+    "status": "strong_keep",
+    "current": {
+      "product_leverage": 0.47,
+      "independence": 0.42,
+      "upside": 0.87,
+      "adjacency": 0.72
+    },
+    "reframed": {
+      "product_leverage": 0.71,
+      "independence": 0.63
+    },
+    "current_form": "Snowflake-based security lake modernization project",
+    "hidden_wedge": "financial-services compliance and analytics layer on top of security data plumbing",
+    "end_state_company": "compliance-native security analytics platform for regulated firms",
+    "desperate_user": "security or compliance director trying to answer audits across fragmented systems",
+    "buyer": "CISO or head of compliance technology",
+    "job": "unify security evidence fast enough for threat response and regulatory reporting",
+    "workaround": "legacy SIEM fragments, custom ETL, and manual reporting across siloed stores",
+    "moat_type": "compliance_knowledge",
+    "reframing_direction": "generic data lake story to vertical compliance analytics wedge",
+    "crazy_upside": "system of record for security evidence in regulated industries",
+    "option_value": "high",
+    "reason_alive": "The plumbing is absorbable, but the regulated analytics layer still has room.",
+    "sources": {
+      "analysis": "shortlist/sec-security-data-lake.md"
+    }
+  },
+  {
+    "id": "cloud-mssp-control-plane",
+    "label": "MSSP Control Plane",
+    "domain": "cloud",
+    "archetype": "control_plane",
+    "status": "alive",
+    "current": {
+      "product_leverage": 0.51,
+      "independence": 0.40,
+      "upside": 0.71,
+      "adjacency": 0.72
+    },
+    "reframed": {
+      "product_leverage": 0.68,
+      "independence": 0.54
+    },
+    "current_form": "multi-tenant AWS platform for one MSSP",
+    "hidden_wedge": "self-serve partner provisioning layer",
+    "end_state_company": "control plane for security service providers managing many isolated tenants",
+    "desperate_user": "head of cloud operations at an MSSP",
+    "buyer": "VP Infrastructure",
+    "job": "spin up isolated partner and end-customer environments without manual toil",
+    "workaround": "Terraform heroics, repeated VPC setup, and human bottlenecks in onboarding",
+    "moat_type": "operational_control",
+    "reframing_direction": "full platform build to narrow partner provisioning product",
+    "crazy_upside": "Shopify-like operating substrate for managed security providers",
+    "option_value": "medium",
+    "reason_alive": "Real toil exists, but platform absorption risk is substantial unless the wedge stays narrow.",
+    "sources": {
+      "analysis": "evaluations/cloud-mssp-control-plane.md"
+    }
+  },
+  {
+    "id": "cloud-secure-aws-landing-zone",
+    "label": "Secure AWS Landing Zone",
+    "domain": "cloud",
+    "archetype": "compliance_system",
+    "status": "faint_pulse",
+    "current": {
+      "product_leverage": 0.33,
+      "independence": 0.26,
+      "upside": 0.62,
+      "adjacency": 0.49
+    },
+    "reframed": {
+      "product_leverage": 0.48,
+      "independence": 0.36
+    },
+    "current_form": "repeatable secure AWS environment provisioning project",
+    "hidden_wedge": "opinionated landing zone for security-sensitive SaaS teams",
+    "end_state_company": "compliance-first environment factory for regulated startups",
+    "desperate_user": "platform leader at a security SaaS company facing enterprise onboarding pressure",
+    "buyer": "VP Engineering",
+    "job": "get compliant AWS environments live fast without hand-built infra each time",
+    "workaround": "manual cloud assembly and consultant-led hardening",
+    "moat_type": "compliance_knowledge",
+    "reframing_direction": "Terraform implementation to compliance opinionated environment product",
+    "crazy_upside": "standardized launch path for every security-sensitive SaaS vendor",
+    "option_value": "medium",
+    "reason_alive": "There is some wedge in compliance packaging, but generic landing-zone gravity is heavy.",
+    "sources": {
+      "analysis": "evaluations/cloud-secure-aws-landing-zone.md"
+    }
+  },
+  {
+    "id": "cloud-tenant-ops-control-plane",
+    "label": "Tenant Ops Control Plane",
+    "domain": "cloud",
+    "archetype": "control_plane",
+    "status": "alive",
+    "current": {
+      "product_leverage": 0.49,
+      "independence": 0.34,
+      "upside": 0.70,
+      "adjacency": 0.68
+    },
+    "reframed": {
+      "product_leverage": 0.64,
+      "independence": 0.47
+    },
+    "current_form": "internal fleet-management layer for a SaaS ops team",
+    "hidden_wedge": "Terraform orchestration service for tenant fleets",
+    "end_state_company": "control plane for operating large fleets of near-identical SaaS environments",
+    "desperate_user": "cloud operations engineer managing drift across thousands of tenants",
+    "buyer": "head of cloud operations",
+    "job": "provision and change customer environments consistently at fleet scale",
+    "workaround": "semi-automated scripts, manual rollouts, and hidden drift",
+    "moat_type": "operational_control",
+    "reframing_direction": "internal ops stack to reusable fleet-orchestration product",
+    "crazy_upside": "base layer for customer-environment fleet management across SaaS",
+    "option_value": "medium",
+    "reason_alive": "The fleet problem is real, but existing infra-control vendors sit close to it.",
+    "sources": {
+      "analysis": "evaluations/cloud-tenant-ops-control-plane.md"
+    }
+  },
+  {
+    "id": "itsm-it-helpdesk-agent",
+    "label": "IT Helpdesk Agent",
+    "domain": "itsm",
+    "archetype": "workflow_automation",
+    "status": "faint_pulse",
+    "current": {
+      "product_leverage": 0.36,
+      "independence": 0.23,
+      "upside": 0.66,
+      "adjacency": 0.53
+    },
+    "reframed": {
+      "product_leverage": 0.52,
+      "independence": 0.37
+    },
+    "current_form": "enterprise helpdesk chatbot using RAG over internal docs",
+    "hidden_wedge": "action-taking agent for identity and provisioning tasks",
+    "end_state_company": "autonomous execution layer for repetitive internal IT operations",
+    "desperate_user": "IT operations manager buried in repetitive L1 tickets",
+    "buyer": "head of internal IT",
+    "job": "resolve repetitive support requests without adding headcount",
+    "workaround": "human ticket queues and generic ITSM bots that mostly deflect questions",
+    "moat_type": "workflow_lockin",
+    "reframing_direction": "FAQ bot to action-taking internal ops agent",
+    "crazy_upside": "hands-free operating layer for common employee IT workflows",
+    "option_value": "medium",
+    "reason_alive": "There is a usable wedge only if it executes actions, not if it stays a chatbot.",
+    "sources": {
+      "analysis": "evaluations/itsm-it-helpdesk-agent.md"
+    }
+  },
+  {
+    "id": "obs-dynatrace-migration-accelerator",
+    "label": "Dynatrace Migration Accelerator",
+    "domain": "observability",
+    "archetype": "migration_tool",
+    "status": "alive",
+    "current": {
+      "product_leverage": 0.41,
+      "independence": 0.24,
+      "upside": 0.67,
+      "adjacency": 0.58
+    },
+    "reframed": {
+      "product_leverage": 0.54,
+      "independence": 0.31
+    },
+    "current_form": "SPL-to-DQL translation tool embedded in a migration project",
+    "hidden_wedge": "self-serve query translator for observability migrations",
+    "end_state_company": "migration utility layer for switching monitoring stacks",
+    "desperate_user": "observability architect tasked with rewriting hundreds of dashboards fast",
+    "buyer": "head of observability engineering",
+    "job": "move alert and dashboard logic without months of manual translation",
+    "workaround": "consultants or engineers hand-converting queries one by one",
+    "moat_type": "workflow_lockin",
+    "reframing_direction": "full migration service to narrow translation engine",
+    "crazy_upside": "Rosetta layer for migration between multiple observability DSLs",
+    "option_value": "medium",
+    "reason_alive": "The translator is real, but the need is episodic and vendor pull is shaky.",
+    "sources": {
+      "analysis": "evaluations/obs-dynatrace-migration-accelerator.md"
+    }
+  },
+  {
+    "id": "obs-splunk-cloud-replatforming",
+    "label": "Splunk Cloud Replatforming",
+    "domain": "observability",
+    "archetype": "migration_tool",
+    "status": "faint_pulse",
+    "current": {
+      "product_leverage": 0.32,
+      "independence": 0.19,
+      "upside": 0.64,
+      "adjacency": 0.54
+    },
+    "reframed": {
+      "product_leverage": 0.46,
+      "independence": 0.28
+    },
+    "current_form": "high-touch Splunk rescue and cloud migration engagement",
+    "hidden_wedge": "automation pack for hardening and validating fragile Splunk estates",
+    "end_state_company": "operational upgrade layer for legacy observability platforms",
+    "desperate_user": "Splunk platform owner blamed for outages and migration risk",
+    "buyer": "observability program lead",
+    "job": "stabilize and move a brittle Splunk estate without business disruption",
+    "workaround": "specialist consultants, heroic upgrades, and ad hoc runbooks",
+    "moat_type": "operational_control",
+    "reframing_direction": "broad services migration to narrow automation and reliability kit",
+    "crazy_upside": "go-to modernization layer for aging observability estates",
+    "option_value": "medium",
+    "reason_alive": "Pain is real, but it still looks too project-shaped to trust as a company.",
+    "sources": {
+      "analysis": "evaluations/obs-splunk-cloud-replatforming.md"
+    }
+  },
+  {
+    "id": "obs-splunk-dynatrace-migrator",
+    "label": "Splunk to Dynatrace Migrator",
+    "domain": "observability",
+    "archetype": "migration_tool",
+    "status": "alive",
+    "current": {
+      "product_leverage": 0.44,
+      "independence": 0.22,
+      "upside": 0.72,
+      "adjacency": 0.57
+    },
+    "reframed": {
+      "product_leverage": 0.58,
+      "independence": 0.33
+    },
+    "current_form": "AI-powered asset conversion engine for one migration path",
+    "hidden_wedge": "upload-and-convert observability asset translator",
+    "end_state_company": "conversion engine for switching between monitoring platforms",
+    "desperate_user": "platform lead staring at thousands of dashboards to rewrite",
+    "buyer": "head of observability or platform engineering",
+    "job": "translate dashboards and alerts faster than a manual migration team can",
+    "workaround": "human translation, spreadsheet tracking, and parallel platform operation",
+    "moat_type": "workflow_lockin",
+    "reframing_direction": "consulting accelerator to productized asset conversion engine",
+    "crazy_upside": "neutral migration layer every observability vendor uses to win switchers",
+    "option_value": "medium",
+    "reason_alive": "The wedge is crisp but time-bounded unless it broadens beyond one route.",
+    "sources": {
+      "analysis": "evaluations/obs-splunk-dynatrace-migrator.md"
+    }
+  },
+  {
+    "id": "obs-sybase-datadog-integration",
+    "label": "Sybase Datadog Integration",
+    "domain": "observability",
+    "archetype": "integration_layer",
+    "status": "faint_pulse",
+    "current": {
+      "product_leverage": 0.24,
+      "independence": 0.15,
+      "upside": 0.46,
+      "adjacency": 0.41
+    },
+    "reframed": {
+      "product_leverage": 0.31,
+      "independence": 0.20
+    },
+    "current_form": "Datadog plugin for monitoring Sybase ASE",
+    "hidden_wedge": "legacy-database observability catalog",
+    "end_state_company": "niche monitoring layer for orphaned but critical enterprise systems",
+    "desperate_user": "database operations lead managing many aging Sybase estates",
+    "buyer": "managed database services leader",
+    "job": "see critical Sybase health and audit data inside the modern observability stack",
+    "workaround": "SSH scripts, separate dashboards, and disconnected alerts",
+    "moat_type": "integration_sprawl",
+    "reframing_direction": "single marketplace integration to broader long-tail legacy monitoring suite",
+    "crazy_upside": "control point for legacy systems modern platforms ignore",
+    "option_value": "low",
+    "reason_alive": "Real pain but small and shrinking market keeps this in faint-pulse territory.",
+    "sources": {
+      "analysis": "evaluations/obs-sybase-datadog-integration.md"
+    }
+  },
+  {
+    "id": "sec-elastic-integration-hub",
+    "label": "Elastic Integration Hub",
+    "domain": "security",
+    "archetype": "integration_layer",
+    "status": "faint_pulse",
+    "current": {
+      "product_leverage": 0.38,
+      "independence": 0.21,
+      "upside": 0.63,
+      "adjacency": 0.59
+    },
+    "reframed": {
+      "product_leverage": 0.55,
+      "independence": 0.35
+    },
+    "current_form": "open-source integration catalog for Elastic",
+    "hidden_wedge": "one-click onboarding for the hardest external data sources",
+    "end_state_company": "cross-source ingestion and normalization layer around Elastic-like platforms",
+    "desperate_user": "platform engineer maintaining brittle ingestion pipelines into Elastic",
+    "buyer": "head of data platform or security engineering",
+    "job": "get external data into Elastic quickly with usable schemas and dashboards",
+    "workaround": "custom pipelines, raw ingest, or skipped sources entirely",
+    "moat_type": "integration_sprawl",
+    "reframing_direction": "vendor catalog work to differentiated hard-source onboarding product",
+    "crazy_upside": "default import layer for unstructured enterprise data into analytical systems",
+    "option_value": "medium",
+    "reason_alive": "There is some option value in hard-source onboarding, but first-party absorption is strong.",
+    "sources": {
+      "analysis": "evaluations/sec-elastic-integration-hub.md"
+    }
+  }
+]

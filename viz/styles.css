@@ -1,0 +1,305 @@
+:root {
+  --bg: #fff;
+  --ink: #000;
+  --muted: #555;
+  --line: #000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 12px;
+}
+
+.app-shell {
+  width: min(1400px, calc(100vw - 20px));
+  margin: 0 auto;
+  padding: 8px 0 16px;
+}
+
+.topbar {
+  margin-bottom: 8px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.control-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  padding: 0 0 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.control-label {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.segmented,
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+button,
+.pill {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  padding: 2px 6px;
+  min-height: 22px;
+}
+
+button:hover,
+.pill:hover {
+  background: #f2f2f2;
+}
+
+button.is-active,
+.pill.is-active {
+  background: #000;
+  color: #fff;
+}
+
+.checkbox-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.checkbox-control input {
+  width: 14px;
+  height: 14px;
+  accent-color: #000;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 12px;
+}
+
+.chart-panel,
+.detail-panel {
+  min-width: 0;
+}
+
+.chart-frame {
+  padding: 0;
+}
+
+#phase-space {
+  display: block;
+  width: 100%;
+  height: min(76vh, 780px);
+  min-height: 520px;
+}
+
+.detail-card {
+  min-height: 360px;
+  padding-left: 12px;
+  border-left: 1px solid var(--line);
+}
+
+.detail-kicker {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.detail-title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  line-height: 1.15;
+}
+
+.status-pill {
+  margin-bottom: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.detail-copy {
+  margin: 0 0 10px;
+  line-height: 1.4;
+}
+
+.detail-section {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.detail-section h3 {
+  margin: 0 0 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.detail-row {
+  margin: 0 0 8px;
+  line-height: 1.4;
+}
+
+.detail-row strong {
+  color: var(--ink);
+}
+
+.detail-link {
+  color: #000;
+  text-decoration: underline;
+}
+
+.detail-link:hover {
+  color: #000;
+}
+
+.empty-state {
+  line-height: 1.5;
+}
+
+.quadrant-label {
+  fill: #666;
+  font-size: 10px;
+}
+
+.axis-title {
+  fill: #000;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.axis-subtitle {
+  fill: #666;
+  font-size: 10px;
+}
+
+.tick text {
+  fill: #555;
+  font-size: 10px;
+}
+
+.tick line,
+.domain {
+  stroke: #000;
+}
+
+.grid line {
+  stroke: #ddd;
+}
+
+.grid .domain {
+  display: none;
+}
+
+.trajectory {
+  fill: none;
+  stroke: #777;
+  stroke-dasharray: 3 5;
+}
+
+.ghost {
+  fill: #fff;
+  stroke: #999;
+  stroke-dasharray: 3 5;
+}
+
+.node {
+  cursor: pointer;
+}
+
+.node.is-dimmed {
+  opacity: 0.25;
+}
+
+.node.is-highlighted .core,
+.node.is-selected .core {
+  stroke: #000;
+  stroke-width: 2.2px;
+}
+
+.halo {
+  fill: none;
+}
+
+.core {
+  stroke: #fff;
+  stroke-width: 1.2px;
+}
+
+.label {
+  fill: #000;
+  font-size: 11px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-width: 3px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 1080px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-card {
+    min-height: 0;
+    padding-left: 0;
+    padding-top: 10px;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .checkbox-control {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    width: min(100vw - 16px, 1400px);
+  }
+
+  #phase-space {
+    min-height: 440px;
+  }
+}
