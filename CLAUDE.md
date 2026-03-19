@@ -1,11 +1,10 @@
-## MASTER GUIDANCE
+# Project rules
 
 This repo contains startup case studies in `markdown/`.
 
-When asked to evaluate them:
-- Process exactly one case study file at a time
-- Use `office-hours.md` as the evaluation rubric
-- Write each completed evaluation to `evaluations/<same-filename>.md`
-- Do not compare case studies during the per-file pass
-- Do not load all files into context at once
-- Keep each evaluation concise and structured
+When evaluating them:
+- Process one case study at a time
+- Never load all case studies into one subagent
+- Use `prompts/office-hours-distilled.md` as the rubric
+- Write outputs to `evaluations/<same-filename>.md`
+- After all evaluations are complete, compare only verdicts/summaries
