@@ -53,7 +53,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=Path("data/markdown"),
+        default=Path("markdown"),
         help="Directory where individual Markdown files will be written.",
     )
     return parser.parse_args()

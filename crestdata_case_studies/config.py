@@ -19,7 +19,7 @@ USER_AGENT = (
 
 OUTPUT_ROOT = Path("data")
 MASTER_JSON_PATH = OUTPUT_ROOT / "case_studies.json"
-MARKDOWN_DIR = OUTPUT_ROOT / "markdown"
+MARKDOWN_DIR = Path("markdown")
 LOG_DIR = OUTPUT_ROOT / "logs"
 STATE_DIR = OUTPUT_ROOT / "state"
 PROGRESS_PATH = STATE_DIR / "progress.json"
@@ -46,4 +46,3 @@ EXCLUDED_CONTENT_SELECTORS = (
     "script",
     "style",
 )
-
