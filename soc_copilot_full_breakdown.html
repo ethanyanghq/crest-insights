@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOC Co-Pilot — Full Breakdown</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #C0392B;
+    --red-light: #FAEDEC;
+    --red-mid: #E8B4B0;
+    --amber: #B7600A;
+    --amber-light: #FDF3E3;
+    --green: #2D6A4F;
+    --green-light: #EAF4EE;
+    --blue: #1A4F8A;
+    --blue-light: #EBF2FB;
+    --ink: #1A1A1A;
+    --ink-2: #3D3D3D;
+    --ink-3: #6B6B6B;
+    --ink-4: #9B9B9B;
+    --border: #E4E4E4;
+    --border-2: #D0D0D0;
+    --bg: #F7F6F4;
+    --white: #FFFFFF;
+    --card: #FFFFFF;
+  }
+
+  html { font-size: 15px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* HEADER */
+  .site-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 32px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .site-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .site-sub {
+    font-size: 0.8rem;
+    color: var(--ink-4);
+    font-family: 'DM Mono', monospace;
+  }
+  .yc-badge {
+    margin-left: auto;
+    font-size: 0.72rem;
+    font-family: 'DM Mono', monospace;
+    background: var(--red);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  /* TABS */
+  .tabs-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .tab-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--ink-3);
+    padding: 14px 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active { color: var(--red); border-bottom-color: var(--red); }
+
+  /* CONTENT */
+  .content { max-width: 860px; margin: 0 auto; padding: 32px 24px 60px; }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* SECTION LABEL */
+  .sec-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 12px;
+    margin-top: 32px;
+  }
+  .sec-label:first-child { margin-top: 0; }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-bottom: 10px;
+  }
+  .card.accent-red { border-left: 3px solid var(--red); }
+  .card.accent-blue { border-left: 3px solid var(--blue); }
+  .card.accent-green { border-left: 3px solid var(--green); }
+
+  .card-title {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.45;
+  }
+  .card-body {
+    font-size: 0.85rem;
+    color: var(--ink-2);
+    line-height: 1.75;
+  }
+
+  /* BADGE */
+  .badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-family: 'DM Mono', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .badge-red { background: var(--red-light); color: var(--red); }
+  .badge-amber { background: var(--amber-light); color: var(--amber); }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-blue { background: var(--blue-light); color: var(--blue); }
+
+  /* STEP LIST */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: flex;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--red-light);
+    color: var(--red);
+    font-size: 0.72rem;
+    font-weight: 600;
+    font-family: 'DM Mono', monospace;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-content { flex: 1; }
+  .step-title { font-size: 0.88rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .step-body { font-size: 0.83rem; color: var(--ink-2); line-height: 1.7; }
+  .step-source { font-size: 0.73rem; color: var(--ink-4); font-family: 'DM Mono', monospace; margin-top: 5px; }
+
+  /* TAG ROW */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .tag {
+    font-size: 0.7rem;
+    padding: 2px 9px;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    background: var(--bg);
+    color: var(--ink-3);
+    border: 1px solid var(--border);
+  }
+
+  /* EVIDENCE BOX */
+  .evidence-box {
+    background: var(--bg);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-top: 10px;
+  }
+  .evidence-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 7px;
+  }
+  .evidence-item {
+    font-size: 0.8rem;
+    color: var(--ink-2);
+    line-height: 1.65;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 3px;
+  }
+  .evidence-item::before { content: "→"; position: absolute; left: 0; color: var(--red); font-size: 0.72rem; top: 2px; }
+
+  /* TABLE */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .data-table th {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    font-family: 'DM Mono', monospace;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-2);
+    background: var(--bg);
+  }
+  .data-table td {
+    padding: 12px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink-2);
+    line-height: 1.6;
+    vertical-align: top;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--bg); }
+  .data-table .td-name { font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .data-table .td-acv { color: var(--green); font-weight: 600; font-family: 'DM Mono', monospace; white-space: nowrap; }
+  .table-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+
+  /* METRIC ROW */
+  .metric-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px; }
+  .metric-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .metric-num { font-size: 1.8rem; font-weight: 600; color: var(--ink); font-family: 'DM Mono', monospace; }
+  .metric-lbl { font-size: 0.75rem; color: var(--ink-3); margin-top: 3px; line-height: 1.4; }
+
+  /* NOTE BOX */
+  .note {
+    font-size: 0.82rem;
+    color: var(--ink-2);
+    line-height: 1.75;
+    padding: 14px 16px;
+    background: var(--red-light);
+    border-radius: 8px;
+    border-left: 3px solid var(--red);
+    margin-top: 16px;
+  }
+
+  /* PITCH STEP */
+  .pitch-step {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .pitch-num {
+    font-size: 0.72rem;
+    font-family: 'DM Mono', monospace;
+    font-weight: 600;
+    color: var(--red);
+    background: var(--red-light);
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .pitch-content { flex: 1; }
+  .pitch-title { font-size: 0.88rem; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .pitch-body { font-size: 0.83rem; color: var(--ink-2); line-height: 1.72; }
+
+  /* MOAT / RISK */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } .metric-row { grid-template-columns: 1fr 1fr; } }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+
+  /* INTEGRATION PILLS */
+  .pill-group { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+  .pill {
+    font-size: 0.73rem;
+    font-family: 'DM Mono', monospace;
+    padding: 4px 11px;
+    border-radius: 20px;
+    border: 1px solid var(--border-2);
+    color: var(--ink-2);
+    background: var(--white);
+  }
+  .pill.red { background: var(--red-light); border-color: var(--red-mid); color: var(--red); }
+
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="site-title">SOC Co-Pilot</div>
+  <div class="site-sub">Internal briefing · Built on Crest Data case studies</div>
+  <div class="yc-badge">YC S26 · DL May 4</div>
+</div>
+
+<div class="tabs-bar">
+  <button class="tab-btn active" onclick="showTab('product', this)">What it does</button>
+  <button class="tab-btn" onclick="showTab('evidence', this)">Case study evidence</button>
+  <button class="tab-btn" onclick="showTab('customers', this)">First 5 customers</button>
+  <button class="tab-btn" onclick="showTab('pitch', this)">YC pitch</button>
+  <button class="tab-btn" onclick="showTab('moat', this)">Moat & risks</button>
+</div>
+
+<div class="content">
+
+<!-- ─── WHAT IT DOES ─── -->
+<div class="panel active" id="panel-product">
+
+  <div class="sec-label">The product in one sentence</div>
+  <div class="card accent-red">
+    <div class="card-title">An AI SOC analyst that ingests alerts from tools you already have, investigates autonomously, and hands analysts a prioritized queue with draft response playbooks — not raw alerts.</div>
+    <div class="card-body" style="margin-top:6px;">Sold as SaaS. Works on top of Splunk, Google SecOps, SentinelOne, CrowdStrike. No rip-and-replace. $5K/month.</div>
+  </div>
+
+  <div class="sec-label">The five-agent architecture — directly from the Netskope deployment</div>
+  <div class="card">
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Alert Triage Agent</div>
+          <div class="step-body">Ingests raw alerts from every connected tool. Deduplicates, normalizes, scores severity. Reduces 10,000+ daily alerts to a prioritized queue of ~50–200 that actually need human attention.</div>
+          <div class="step-source">Source: Netskope case — "10,000+ daily alerts across 100+ locations"</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Context Gathering Agent</div>
+          <div class="step-body">For each prioritized alert, automatically pulls enrichment: IP/domain reputation, asset ownership, user identity from Okta, prior incident history, attack path data. Analyst gets a full dossier, not just an alert ID.</div>
+          <div class="step-source">Source: Netskope case + Google SecOps SIEM enrichment case + SOAR attack path case</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Correlation Agent</div>
+          <div class="step-body">Links seemingly unrelated events across disconnected tools. A login anomaly in Okta + unusual outbound in CrowdStrike + a new process on an endpoint = one correlated incident, not three separate alerts.</div>
+          <div class="step-source">Source: Netskope case — "Critical security information siloed across Okta, CrowdStrike, and other platforms"</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Response Recommendation Agent</div>
+          <div class="step-body">Drafts the playbook: block this IP, isolate this endpoint, revoke this token, notify this team. Pulls from historical incident data via RAG on past tickets. Analyst approves with one click. Reduces response drafting from 45 min → 5 min.</div>
+          <div class="step-source">Source: Google SecOps SOAR case (automated playbooks) + SRE chat case (RAG on past incidents, 40% triage reduction)</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Documentation Agent</div>
+          <div class="step-body">Auto-generates incident reports, timeline of events, root cause summary, lessons learned. Writes the ticket. Feeds back into the RAG knowledge base so future incidents improve. New analyst onboarding drops from weeks to days.</div>
+          <div class="step-source">Source: SRE chat case — "30% improved onboarding efficiency", "40% reduced time-to-resolution"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label">Day 1 integrations — all proven by Crest case studies</div>
+  <div class="card">
+    <div class="pill-group">
+      <span class="pill red">Google SecOps SIEM</span>
+      <span class="pill red">Google SecOps SOAR</span>
+      <span class="pill red">Splunk / Splunk Cloud</span>
+      <span class="pill">SentinelOne</span>
+      <span class="pill">CrowdStrike</span>
+      <span class="pill">Okta</span>
+      <span class="pill">AWS Security Hub</span>
+      <span class="pill">Datadog Security</span>
+      <span class="pill">Jira / Confluence</span>
+      <span class="pill">Slack (delivery)</span>
+    </div>
+  </div>
+
+  <div class="sec-label">What it is not</div>
+  <div class="card">
+    <div class="card-body">Not a SIEM replacement. Not a SOAR replacement. Not another tool adding to the stack. It sits on top of what teams already have and makes those tools 10x more useful. The closest analogies: Cursor for coding, Harvey for legal. Same pattern — an AI layer on top of existing workflows, charged as SaaS.</div>
+  </div>
+
+</div>
+
+<!-- ─── CASE STUDY EVIDENCE ─── -->
+<div class="panel" id="panel-evidence">
+
+  <div class="sec-label">What each case study proves for your YC application</div>
+
+  <div class="card accent-red" style="margin-bottom:10px;">
+    <div class="badge badge-red">Must-have · Tier 1</div>
+    <div class="card-title">Netskope — Multi-Agentic AI (AWS Bedrock + LangGraph + Anthropic Claude)</div>
+    <div class="card-body">This is the product. Five agents already designed, built, and shipped. 10,000+ daily alerts was the real customer problem. The stack — AWS Bedrock, LangGraph, Anthropic Claude, Streamlit, Kubernetes — is the exact stack for v1. <strong>YC use: "We already built v0 of this product for a $3B+ security company and it's running in production."</strong></div>
+    <div class="tag-row">
+      <span class="tag" style="background:var(--red-light);color:var(--red);border-color:var(--red-mid);">Proves: architecture works</span>
+      <span class="tag" style="background:var(--red-light);color:var(--red);border-color:var(--red-mid);">Proves: real enterprise pain</span>
+      <span class="tag" style="background:var(--red-light);color:var(--red);border-color:var(--red-mid);">Proves: Claude + AWS Bedrock stack</span>
+    </div>
+  </div>
+
+  <div class="card accent-blue" style="margin-bottom:10px;">
+    <div class="badge badge-blue">Must-have · Tier 1</div>
+    <div class="card-title">Google SecOps SIEM — Threat Intel Enrichment</div>
+    <div class="card-body">Proves the Context Gathering Agent works. Automated enrichment of IPs, domains, hashes. UDM normalization. Real-time IOC matching against live telemetry. The "insufficient context" problem = analyst pain = the core value prop of the SOC co-pilot.</div>
+    <div class="tag-row">
+      <span class="tag" style="background:var(--blue-light);color:var(--blue);border-color:#B8D0EE;">Proves: enrichment pipeline</span>
+      <span class="tag" style="background:var(--blue-light);color:var(--blue);border-color:#B8D0EE;">Proves: UDM/normalization depth</span>
+      <span class="tag" style="background:var(--blue-light);color:var(--blue);border-color:#B8D0EE;">Proves: Google SecOps expertise</span>
+    </div>
+  </div>
+
+  <div class="card accent-blue" style="margin-bottom:10px;">
+    <div class="badge badge-blue">Must-have · Tier 1</div>
+    <div class="card-title">Google SecOps SOAR — Exposure Management Integration</div>
+    <div class="card-body">Proves the Response Recommendation Agent. Automated playbooks, risk scoring across 20+ parameters, breach point management. "Manual workflows: remediation actions required manual intervention across multiple platforms" = exact problem being solved.</div>
+    <div class="tag-row">
+      <span class="tag" style="background:var(--blue-light);color:var(--blue);border-color:#B8D0EE;">Proves: playbook automation</span>
+      <span class="tag" style="background:var(--blue-light);color:var(--blue);border-color:#B8D0EE;">Proves: risk scoring engine</span>
+      <span class="tag" style="background:var(--blue-light);color:var(--blue);border-color:#B8D0EE;">Proves: cross-platform SOAR</span>
+    </div>
+  </div>
+
+  <div class="card accent-green" style="margin-bottom:10px;">
+    <div class="badge badge-green">Good to have · Tier 2</div>
+    <div class="card-title">XDR Cloud Ops — Multi-Tenant AWS Architecture</div>
+    <div class="card-body">Proves the SaaS infrastructure. Federated observability, tenant isolation, automated onboarding from 6–8 hrs → 30 min, 35% cost reduction. <strong>70–80% faster incident detection</strong> — the single best hard metric in the entire case study library.</div>
+    <div class="tag-row">
+      <span class="tag" style="background:var(--green-light);color:var(--green);border-color:#A8D4BC;">Proves: multi-tenant SaaS infra</span>
+      <span class="tag" style="background:var(--green-light);color:var(--green);border-color:#A8D4BC;">Proves: 70–80% faster detection</span>
+      <span class="tag" style="background:var(--green-light);color:var(--green);border-color:#A8D4BC;">Proves: enterprise AWS scale</span>
+    </div>
+  </div>
+
+  <div class="card accent-green" style="margin-bottom:10px;">
+    <div class="badge badge-green">Good to have · Tier 2</div>
+    <div class="card-title">SRE AI Chat App (SASE Unicorn) — RAG on Jira/Confluence</div>
+    <div class="card-body"><strong>40% reduction in time-to-resolution.</strong> 30% faster onboarding. Slack-native delivery. RAG on operational knowledge base. This is the analyst-facing UX layer — the interface analysts actually use every day.</div>
+    <div class="tag-row">
+      <span class="tag" style="background:var(--green-light);color:var(--green);border-color:#A8D4BC;">Proves: 40% TTR reduction (hard metric)</span>
+      <span class="tag" style="background:var(--green-light);color:var(--green);border-color:#A8D4BC;">Proves: RAG on incident history</span>
+      <span class="tag" style="background:var(--green-light);color:var(--green);border-color:#A8D4BC;">Proves: Slack-native UX</span>
+    </div>
+  </div>
+
+  <div class="note">Combined, these 5 cases prove every layer of the product stack: alert ingestion → enrichment → correlation → playbook generation → documentation. No other YC applicant in this space can point to 5 shipped customer deployments as proof. That is the unfair advantage.</div>
+
+</div>
+
+<!-- ─── FIRST 5 CUSTOMERS ─── -->
+<div class="panel" id="panel-customers">
+
+  <div class="sec-label">First 5 paying customers — who to call and why they'll say yes</div>
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Who</th>
+          <th>Why they buy</th>
+          <th>Entry point</th>
+          <th>ACV est.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1</strong></td>
+          <td class="td-name">Netskope<br><span style="font-size:0.72rem;color:var(--ink-4);font-weight:400;">Existing Crest customer</span></td>
+          <td>Already paid for v0. The multi-agentic system is running. Ask to productize it — charge SaaS fees instead of T&M. Easiest sales call possible.</td>
+          <td>Direct via existing Crest relationship. Ask for a pilot contract to run productized version alongside current deployment.</td>
+          <td class="td-acv">$120–180K</td>
+        </tr>
+        <tr>
+          <td><strong>2</strong></td>
+          <td class="td-name">The SASE unicorn<br><span style="font-size:0.72rem;color:var(--ink-4);font-weight:400;">SRE chat app customer</span></td>
+          <td>Already using Crest's AI chat for SRE ops. 40% TTR reduction proven. Natural expansion: "same thing, but for your SOC team." They already trust the approach.</td>
+          <td>Expand existing account. Frame as "SOC edition" of the tool they already love.</td>
+          <td class="td-acv">$80–150K</td>
+        </tr>
+        <tr>
+          <td><strong>3</strong></td>
+          <td class="td-name">Mid-market FinTech / RegTech<br><span style="font-size:0.72rem;color:var(--ink-4);font-weight:400;">New logo, high-pain vertical</span></td>
+          <td>FinTechs face SOC2, PCI-DSS, FedRAMP compliance pressure. Can't afford 10-person SOC. The Crest RegTech AWS case proves this vertical trusts Crest.</td>
+          <td>Warm intro via Crest's existing FinTech customer base. Lead with compliance angle: "meet your incident response SLA requirements."</td>
+          <td class="td-acv">$60–100K</td>
+        </tr>
+        <tr>
+          <td><strong>4</strong></td>
+          <td class="td-name">Google SecOps customer<br><span style="font-size:0.72rem;color:var(--ink-4);font-weight:400;">Via Google partnership</span></td>
+          <td>Crest has deep Google SecOps expertise and 2 live case studies on it. Every Google SecOps customer struggles with alert volume — Crest has a proven solution that sits natively on their stack.</td>
+          <td>Approach via Google Cloud Partner Program. Position as a Google SecOps add-on. Google's CSMs can intro you to struggling customers.</td>
+          <td class="td-acv">$80–120K</td>
+        </tr>
+        <tr>
+          <td><strong>5</strong></td>
+          <td class="td-name">MSSP (as reseller)<br><span style="font-size:0.72rem;color:var(--ink-4);font-weight:400;">Channel play</span></td>
+          <td>MSSPs serve 10–100 mid-market clients each. Sell to one MSSP and you reach their entire client base. Crest already built the MSSP Portal — that team trusts Crest's architecture.</td>
+          <td>Partner model: white-label the SOC co-pilot. MSSP marks it up to clients. Revenue share or per-seat licensing.</td>
+          <td class="td-acv">$200–400K</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">For YC: customers 1 and 2 should be design partners before you submit — meaning they've agreed (even informally) to pilot the product. One LOI or paid pilot beats 100 cold leads in a YC application.</div>
+
+</div>
+
+<!-- ─── YC PITCH ─── -->
+<div class="panel" id="panel-pitch">
+
+  <div class="sec-label">One-liner — for the application form</div>
+  <div class="card accent-red">
+    <div class="card-body" style="font-size:0.95rem;font-weight:500;color:var(--ink);">We're building an AI SOC analyst that reduces security alert triage from hours to minutes — we already deployed v0 for Netskope, a $3B+ security company, handling 10,000+ daily alerts in production.</div>
+  </div>
+
+  <div class="sec-label">Slide-by-slide narrative</div>
+
+  <div class="pitch-step">
+    <div class="pitch-num">1</div>
+    <div class="pitch-content">
+      <div class="pitch-title">The problem — use the exact numbers from the cases</div>
+      <div class="pitch-body">Enterprise SOCs handle 10,000+ alerts per day. Analysts manually investigate each one across 5–8 disconnected tools. 80% of alerts are noise. The 20% that matter take 4–6 hours to triage. Meanwhile the adversary is moving in minutes. Security teams are understaffed by design — there aren't enough analysts in the world to hire your way out of this.</div>
+    </div>
+  </div>
+
+  <div class="pitch-step">
+    <div class="pitch-num">2</div>
+    <div class="pitch-content">
+      <div class="pitch-title">Why now</div>
+      <div class="pitch-body">Three things converged: (1) LLMs can now reason across multi-step security investigations, (2) AWS Bedrock + LangGraph make multi-agent orchestration production-ready, (3) SOC teams are at a breaking point — alert volume grew 30% YoY while headcount stayed flat. The security tools have great APIs but no intelligence layer. We are the intelligence layer.</div>
+    </div>
+  </div>
+
+  <div class="pitch-step">
+    <div class="pitch-num">3</div>
+    <div class="pitch-content">
+      <div class="pitch-title">The solution — demo the agent flow</div>
+      <div class="pitch-body">Show the 5-agent loop: alert ingestion → enrichment → cross-tool correlation → playbook draft → one-click response + auto-documentation. Key metrics to anchor: 40% reduction in time-to-resolution (SRE case). 70–80% faster incident detection (XDR case). Show the Slack interface — analysts live in Slack, the tool comes to them.</div>
+    </div>
+  </div>
+
+  <div class="pitch-step">
+    <div class="pitch-num">4</div>
+    <div class="pitch-content">
+      <div class="pitch-title">Traction — your strongest slide</div>
+      <div class="pitch-body">Through Crest Data we've already shipped this system for: (1) A $3B+ SSE/Zero Trust company — live, handling 10K+ alerts/day; (2) A unicorn SASE company — 40% TTR reduction; (3) An XDR cybersecurity firm — 70–80% faster detection. We have relationships with 150+ enterprise security customers and partnerships with AWS, Google, Splunk, SentinelOne. No cold-start startup can match this on day one.</div>
+    </div>
+  </div>
+
+  <div class="pitch-step">
+    <div class="pitch-num">5</div>
+    <div class="pitch-content">
+      <div class="pitch-title">Business model</div>
+      <div class="pitch-body">SaaS, priced per analyst seat + alert volume tier. $3–8K/month for 5–20 analyst teams (mid-market). $15–40K/month for enterprise. Channel: white-label to MSSPs serving 10–50 clients each. Target: $1M ARR in 12 months from 3 enterprise + 2 MSSP accounts.</div>
+    </div>
+  </div>
+
+  <div class="pitch-step">
+    <div class="pitch-num">6</div>
+    <div class="pitch-content">
+      <div class="pitch-title">Why us — the most important slide</div>
+      <div class="pitch-body">We didn't come up with this idea from a blog post. We built it, deployed it, and measured the results for paying enterprise customers. Crest Data has 1,200+ engineers, 5,500+ completed projects, and direct partnerships with every tool in the security stack. The founding team has shipped production multi-agentic AI systems in enterprise security. No other team applying to YC this batch has this on day one.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ─── MOAT & RISKS ─── -->
+<div class="panel" id="panel-moat">
+
+  <div class="sec-label">The real moat</div>
+  <div class="card accent-red">
+    <div class="card-title">Data flywheel — the compounding advantage</div>
+    <div class="card-body">Every investigation the AI runs, every playbook it drafts, every false positive corrected by an analyst feeds back into the model. Customer 10 gets a dramatically better product than customer 1. Security AI compounds: proprietary incident data is the asset no competitor can replicate. The longer you're deployed, the smarter the system gets for that specific customer environment.</div>
+  </div>
+
+  <div class="sec-label">Moat layers</div>
+  <div class="two-col">
+    <div class="card accent-blue">
+      <div class="card-title">Integration depth</div>
+      <div class="card-body">Crest built the integrations for Google SecOps UDM, Splunk HEC, SentinelOne API, CrowdStrike, Okta, XDR platforms. These take months to build correctly. A new entrant starts from scratch. Crest's engineers are the integration blueprint.</div>
+    </div>
+    <div class="card accent-blue">
+      <div class="card-title">Customer trust</div>
+      <div class="card-body">Security teams don't give API access to tools they don't trust. Crest already has that trust with 150+ enterprise customers. Cold outbound can't buy this. A new competitor can build a better UI but can't shortcut 10 years of relationships.</div>
+    </div>
+    <div class="card accent-blue">
+      <div class="card-title">Multi-tenant SaaS architecture</div>
+      <div class="card-body">The XDR case proves the infrastructure: tenant isolation, automated onboarding in 30 min, federated observability. Most competitors spend 6–9 months on infra before writing a single line of product code.</div>
+    </div>
+    <div class="card accent-blue">
+      <div class="card-title">Vendor neutrality</div>
+      <div class="card-body">We work across CrowdStrike AND SentinelOne AND Google SecOps AND Splunk simultaneously. Every platform vendor is incentivized to lock customers in. We work for everyone. That neutrality is a structural advantage.</div>
+    </div>
+  </div>
+
+  <div class="sec-label">Honest risks — and the answers</div>
+
+  <div class="card" style="margin-bottom:10px;">
+    <div class="badge badge-red">Risk</div>
+    <div class="card-title">CrowdStrike / Palo Alto build this themselves</div>
+    <div class="card-body">Platform vendors are incentivized to lock customers in. A CrowdStrike-built version only works for pure CrowdStrike shops. We work for everyone. Also: Palo Alto's XSIAM costs $500K+ and requires ripping out your stack. We're $5K/month and plug into what you have. Specialization beats platform bloat.</div>
+  </div>
+
+  <div class="card" style="margin-bottom:10px;">
+    <div class="badge badge-amber">Risk</div>
+    <div class="card-title">Dropzone AI (YC-backed, direct competitor)</div>
+    <div class="card-body">Real and good. Focused on SMB Tier 1 triage automation — does this alert need a human or not. We go deeper: full investigation automation, cross-vendor correlation, SOAR playbook generation, MSSP channel, mid-market segment. Know Dropzone AI cold before the YC interview.</div>
+  </div>
+
+  <div class="card" style="margin-bottom:10px;">
+    <div class="badge badge-amber">Risk</div>
+    <div class="card-title">AI hallucinations in security = dangerous false negatives</div>
+    <div class="card-body">Human-in-the-loop is non-negotiable. The system drafts, the analyst approves. No autonomous action on anything consequential. This is how the Netskope system was designed from day one: "Human-in-the-loop integration points for critical decisions." Lead with this in every customer conversation.</div>
+  </div>
+
+  <div class="card" style="margin-bottom:10px;">
+    <div class="badge badge-amber">Risk</div>
+    <div class="card-title">Dependency on Crest Data</div>
+    <div class="card-body">Crest is the launchpad, not the engine. We own the code. We own the customer relationships once established directly. We own the data flywheel. After 6 months our customers open doors, not Crest. Ideally Crest becomes a channel partner or investor — aligned incentives, not a single point of failure.</div>
+  </div>
+
+</div>
+
+</div><!-- /content -->
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
