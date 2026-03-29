@@ -47,3 +47,7 @@ data/state/
 *.pcm
 *_tts.txt
 sentinel/audio/
+
+# Allow specific committed audio files
+!sentinel/audio/eleven_labs_half.m4a
+!sentinel/audio/horrible_voice_full.mp4
