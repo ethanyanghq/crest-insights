@@ -41,4 +41,9 @@ data/state/
 
 # Generated audio and derived TTS files
 *.mp3
+*.wav
+*.aiff
+*.m4a
+*.pcm
 *_tts.txt
+sentinel/audio/
