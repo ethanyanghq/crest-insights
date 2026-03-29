@@ -38,3 +38,7 @@ dist/
 # Project runtime artifacts
 data/logs/
 data/state/
+
+# Generated audio and derived TTS files
+*.mp3
+*_tts.txt
